@@ -1,0 +1,30 @@
+$primary-color: #e74c3c;
+$font-stack:    Helvetica, sans-serif;
+
+.align-centric {
+  align-content: center;
+  text-align: center;
+}
+
+.drinks-container1{
+  position: relative;
+  height: 10;
+  font-family: $font-stack;
+  font-size:1em;
+  text-align: center;
+}
+.drinks-container2{
+  background-color: $primary-color;
+  font-family: $font-stack;
+  font-size:1em;
+  text-align: center;
+}
+
+.input {
+  color:black;
+  text-decoration:none;
+  padding:5px 10px;
+  border-radius:3px;
+  font-family: 'Poiret One', cursive;
+  font-size:2em;
+}

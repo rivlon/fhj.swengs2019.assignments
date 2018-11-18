@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Pucher Hausbier",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Pilsner_Bier.jpg",
+    "location": "Cafe Pucher",
+    "description": "The best Hausbier in Eggenberg.",
+    "category": "Beer",
+    "price": "2.7"
+  },
+  {
+    "name": "Season's Bowl",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Bowle_Steinhude_2009_20090822_5.JPG",
+    "location": "Seasons",
+	  "description": "Frutiest bowl in whole town.",
+    "category": "Strong Alcohol",
+    "price": "4,8"
+  },
+  {
+    "name": "Sägewerk Staro",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/95/Beers_of_the_Czech_Republic_Starobrno_IMG_0059.JPG",
+    "location": "Sägewerk",
+	  "description": "Good beer in rustic environment.",
+    "category": "Beer"
+  },
+  {
+    "name": "Murstüberl Mischbier",
+    "image": "https://www.kanali6.com.cy/sites/default/files/styles/main_image_subpage__800_x_530_/public/news-images/mpyra_tsoygkrizoyn_1.jpg?itok=fjQ63GiH&sc=555562867d6dacab2b4b1b90ba69c32f",
+    "location": "Murstüberl",
+	  "description": "Classic Murstüberl!",
+    "category": "Beer"
+  },
+  {
+    "name": "TamTam Berliner Luft",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Berliner_Luft_mit_Humboldthain_auf_dem_Etikett%2C_2017_01.jpg",
+    "location": "TamTam",
+	  "description": "Fastest way to get drunk and to enjoy the good music here.",
+    "category": "Strong Alcohol",
+    "price": "2,5"
+  }
+]

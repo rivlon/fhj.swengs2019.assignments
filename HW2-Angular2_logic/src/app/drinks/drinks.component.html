@@ -1,0 +1,11 @@
+<p class="align-centric">
+  <input type="text" #box (keyup)="filterDrinks(box.value);" value="" placeholder="filter" class="input">
+</p>
+
+<div *ngFor="let drink of drinksArray;" class="drinks-container1">
+  <h1>{{drink.name | uppercase}}</h1>
+  <div>{{drink.location}}</div>
+  <div>{{drink.description}}</div>
+  <img [src]="drink.image" width="300" class="align-centric">
+  <div *ngIf="drink.price">{{drink.price}} Euro</div>
+</div>
