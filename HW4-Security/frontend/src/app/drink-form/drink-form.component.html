@@ -1,0 +1,23 @@
+<a routerLink="/drink-form"><button class="btn btn-success pull-right" >Drink Form</button></a>
+<a routerLink="/drink-list"><button class="btn btn-success pull-right" >Drink List</button></a>
+<a routerLink="/user-list" ><button class="btn btn-success pull-right" >User List</button></a>
+<form (ngSubmit)="saveDrink()">
+  <label>
+    Drink name:
+    <input type="text" name="drinkName" [(ngModel)]="drink.drinkName"/>
+  </label>
+  <label>
+    Bar:
+    <input type="text" name="bar" [(ngModel)]="drink.bar"/>
+  </label>
+  <label>
+  Price:
+    <input type="number" name="price" [(ngModel)]="drink.price"/>
+  </label>
+  <button type="submit">
+    Save
+  </button>
+  <button type="submit" (click)="setShouldNavigateToList()">
+    Save and Back
+  </button>
+</form>

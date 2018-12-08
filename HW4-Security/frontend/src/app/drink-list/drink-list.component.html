@@ -1,0 +1,8 @@
+<a routerLink="/drink-form"><button class="btn btn-success pull-right" >Drink Form</button></a>
+<a routerLink="/drink-list"><button class="btn btn-success pull-right" >Drink List</button></a>
+<a routerLink="/user-list" ><button class="btn btn-success pull-right" >User List</button></a>
+
+<div *ngFor="let drink of drinks">
+  {{drink.drinkName}} {{drink.bar}} {{drink.price}} <a [routerLink]="'/drink-form/' + drink.id">Edit</a> <button type="button" (click)="deleteDrink(drink)">Delete</button>
+</div>
+
