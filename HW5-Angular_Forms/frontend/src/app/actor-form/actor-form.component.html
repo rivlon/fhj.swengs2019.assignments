@@ -1,0 +1,137 @@
+<button [routerLink]="'/actor-list'">Actor List</button>
+<form [formGroup]="actorForm" (ngSubmit)="saveActor()">
+
+  <alert *ngIf="actorForm.controls.income.value > 8000" name="incomeAlert" id="success" type="success">
+    <strong>Well done!</strong> This actor has a high income!
+  </alert>
+  <alert *ngIf="actorForm.controls.income.value == 8000" name="incomeAlert" id="ok" type="warning">
+    <strong>Ok...</strong> Is ok, man.
+  </alert>
+  <alert *ngIf="actorForm.controls.income.value < 8000" name="incomeAlert" id="failure" type="danger">
+    <strong>Oh snap!</strong> This actor doesn't have a high income :/.
+  </alert>
+
+  <div class="row">
+    <div *ngIf="actorForm.controls.rating.value > 5 && actorForm.controls.gender.value === 'MALE'"> Great actor!</div>
+    <div *ngIf="actorForm.controls.rating.value > 5 && actorForm.controls.gender.value === 'FEMALE'"> Great actress!
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="firstName">First name:</label>
+        <input id="firstName" type="text" name="firstName" formControlName="firstName" class="form-control"/>
+        <div
+          *ngIf="actorForm.controls.firstName.invalid && (actorForm.controls.firstName.dirty || actorForm.controls.firstName.touched)"
+          class="alert alert-danger">
+          <div *ngIf="actorForm.controls.firstName.errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="actorForm.controls.firstName.errors.minlength">
+            Name must be at least 2 characters long.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <label for="lastName">Last name:</label>
+      <input id="lastName" type="text" name="lastName" formControlName="lastName" class="form-control"/>
+    </div>
+    <div class="col">
+      <label for="income">Monthly Income:</label>
+      <input id="income" type="number" name="income" formControlName="income" class="form-control"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="rating">Rating:</label>
+      <rating id="rating" type="text" name="rating" [max]="10" formControlName="rating"></rating>
+    </div>
+    <div class="col">
+      <label for="movies">Movies:</label>
+      <ngx-select id="movies" [items]="movieOptions" name="movies" [multiple]="true"
+                  formControlName="movies" optionTextField="title"></ngx-select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <label for="dayOfBirth">Day of birth:</label>
+      <input id="dayOfBirth" type="text" bsDatepicker name="dayOfBirth" formControlName="dayOfBirth"
+             class="form-control"/>
+    </div>
+    <div class="col">
+      <label>Gender</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" formControlName="gender"
+               value="FEMALE">
+        <label class="form-check-label" for="exampleRadios1">
+          Female
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="exampleRadios2" formControlName="gender"
+               value="MALE">
+        <label class="form-check-label" for="exampleRadios2">
+          Male
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="exampleRadios3" formControlName="gender"
+               value="OTHER">
+        <label class="form-check-label" for="exampleRadios3">
+          Other
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="alive" id="exampleCheckbox" formControlName="alive"
+               [value]="true">
+        <label class="form-check-label" for="exampleCheckbox">
+          Alive
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+  <div class="col">
+    <label for="color">Favorite Color</label>
+    <input type="color" class="form-control" name="color" id="color" formControlName="color" />
+  </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-12 mb-3" *ngIf="text">
+      <pre class="card card-block card-header" name="clothingSize" >The clothingSize is: {{size}}</pre>
+    </div>
+    <div class="col-xs-12 col-12 mb-2">
+      <div class="btn-group"
+           dropdown
+           (isOpenChange)="onOpenChange($event)">
+        <button id="button-state-change" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                aria-controls="dropdown-state-change">
+          Sizes <span class="caret"></span>
+        </button>
+        <ul id="dropdown-state-change" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="button-state-change">
+          <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('XS')">XS</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('S')">S</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('M')">M</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('L')">L</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('XL')">XL</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('XXL')">XXL</a></li>
+          <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('XXXL')">XXXL</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="btn-group">
+    <button type="submit" class="btn btn-primary" [disabled]="actorForm.invalid">
+      Save
+    </button>
+    <button type="submit" (click)="setShouldNavigateToList()" class="btn btn-primary" [disabled]="actorForm.invalid">
+      Save and Back
+    </button>
+  </div>
+
+</form>
