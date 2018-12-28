@@ -19,6 +19,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
+
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }

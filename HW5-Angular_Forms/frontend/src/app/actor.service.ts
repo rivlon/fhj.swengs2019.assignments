@@ -10,9 +10,10 @@ export class ActorService {
 
   constructor(private http: HttpClient) {
   }
+
   prepareActorForSaving(actor: Actor) {
     if (actor.dayOfBirth instanceof String) {
-      actor.dayOfBirth = new Date(actor.dayOfBirth)
+      actor.dayOfBirth = new Date(actor.dayOfBirth);
     }
   }
 
@@ -46,4 +47,8 @@ export class ActorService {
     return this.http.post('/api/dto/actors', actor);
   }
 
+  getByFirstName(name: string) {
+    return this.http.get('api/dto/actors/firstName/' + name);
+  }
 }
+

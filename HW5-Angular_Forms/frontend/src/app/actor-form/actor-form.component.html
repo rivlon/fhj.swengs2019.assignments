@@ -1,33 +1,43 @@
 <button [routerLink]="'/actor-list'">Actor List</button>
-<form [formGroup]="actorForm" (ngSubmit)="saveActor()">
+<form #f="ngForm" [formGroup]="actorForm" (ngSubmit)="saveActor()">
 
-  <alert *ngIf="actorForm.controls.income.value > 8000" name="incomeAlert" id="success" type="success">
-    <strong>Well done!</strong> This actor has a high income!
-  </alert>
-  <alert *ngIf="actorForm.controls.income.value == 8000" name="incomeAlert" id="ok" type="warning">
-    <strong>Ok...</strong> Is ok, man.
-  </alert>
-  <alert *ngIf="actorForm.controls.income.value < 8000" name="incomeAlert" id="failure" type="danger">
-    <strong>Oh snap!</strong> This actor doesn't have a high income :/.
-  </alert>
+  <div *ngIf="actorForm.controls.income.value">
+    <alert *ngIf="actorForm.controls.income.value > 8000" name="incomeAlert" id="success" type="success">
+      <strong>Well done!</strong> This actor has a high income!
+    </alert>
+    <alert *ngIf="actorForm.controls.income.value == 8000" name="incomeAlert" id="ok" type="warning">
+      <strong>Ok...</strong> Is ok, man.
+    </alert>
+    <alert *ngIf="actorForm.controls.income.value < 8000" name="incomeAlert" id="failure" type="danger">
+      <strong>Oh snap!</strong> This actor doesn't have a high income :/.
+    </alert>
+  </div>
 
   <div class="row">
-    <div *ngIf="actorForm.controls.rating.value > 5 && actorForm.controls.gender.value === 'MALE'"> Great actor!</div>
-    <div *ngIf="actorForm.controls.rating.value > 5 && actorForm.controls.gender.value === 'FEMALE'"> Great actress!
-    </div>
+    <alert *ngIf="actorForm.controls.rating.value > 5 && actorForm.controls.gender.value === 'MALE'" name="actAlter"
+           id="actrMale"> Great actor!
+    </alert>
+    <alert *ngIf="actorForm.controls.rating.value > 5 && actorForm.controls.gender.value === 'FEMALE'" name="actAlter"
+           id="actrFemale"> Great actress!
+    </alert>
     <div class="col">
       <div class="form-group">
         <label for="firstName">First name:</label>
         <input id="firstName" type="text" name="firstName" formControlName="firstName" class="form-control"/>
-        <div
-          *ngIf="actorForm.controls.firstName.invalid && (actorForm.controls.firstName.dirty || actorForm.controls.firstName.touched)"
-          class="alert alert-danger">
-          <div *ngIf="actorForm.controls.firstName.errors.required">
-            Name is required.
+        <div>
+          <div class="alert alert-danger"
+               *ngIf="actorForm.controls.firstName.invalid && (actorForm.controls.firstName.dirty || actorForm.controls.firstName.touched)">
+            <div class="alert alert-danger" *ngIf="actorForm.controls.firstName.errors.required">
+              Name is required.
+            </div>
+            <div class="alert alert-danger" *ngIf="actorForm.controls.firstName.errors.minlength">
+              Name must be at least 2 characters long.
+            </div>
+            <div class="alert alert-danger" *ngIf="actorForm.controls.firstName.errors.firstNameTaken">
+              Firstname has already been taken
+            </div>
           </div>
-          <div *ngIf="actorForm.controls.firstName.errors.minlength">
-            Name must be at least 2 characters long.
-          </div>
+          <div *ngIf="actorForm.controls.firstName.valid" class="alert alert-success"> Your firstname is valid!</div>
         </div>
       </div>
     </div>
@@ -94,15 +104,14 @@
     </div>
   </div>
   <div class="row">
-  <div class="col">
-    <label for="color">Favorite Color</label>
-    <input type="color" class="form-control" name="color" id="color" formControlName="color" />
+    <div class="col">
+      <label for="color">Favorite Color</label>
+      <input type="color" class="form-control" name="color" id="color" formControlName="color"/>
+    </div>
   </div>
-  </div>
-
   <div class="row">
     <div class="col-xs-12 col-12 mb-3" *ngIf="text">
-      <pre class="card card-block card-header" name="clothingSize" >The clothingSize is: {{size}}</pre>
+      <pre class="card card-block card-header" name="clothingSize">The clothingSize is: {{size}}</pre>
     </div>
     <div class="col-xs-12 col-12 mb-2">
       <div class="btn-group"
@@ -118,9 +127,6 @@
           <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('S')">S</a></li>
           <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('M')">M</a></li>
           <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('L')">L</a></li>
-          <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('XL')">XL</a></li>
-          <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('XXL')">XXL</a></li>
-          <li role="menuitem"><a class="dropdown-item" (click)="setClothingSize('XXXL')">XXXL</a></li>
         </ul>
       </div>
     </div>
@@ -132,6 +138,8 @@
     <button type="submit" (click)="setShouldNavigateToList()" class="btn btn-primary" [disabled]="actorForm.invalid">
       Save and Back
     </button>
+    <div class="alert alert-danger" *ngIf="actorForm.invalid">
+      Something is wrong with the form... Please check the firstname!
+    </div>
   </div>
-
 </form>

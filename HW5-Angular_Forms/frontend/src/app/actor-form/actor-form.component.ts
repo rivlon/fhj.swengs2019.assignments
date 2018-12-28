@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Directive, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ActorService} from '../actor.service';
 import {MovieService} from '../movie.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-
+import {FirstNameNotTaken} from '../shared/firstNameNotTaken.directive';
 
 @Component({
   selector: 'app-actor-form',
@@ -26,7 +26,8 @@ export class ActorFormComponent implements OnInit {
 
     this.actorForm = new FormGroup({
       'id': new FormControl(),
-      'firstName': new FormControl('', [Validators.required, Validators.minLength(2)]),
+      'firstName': new FormControl([''], [Validators.required, Validators.minLength(2)],
+        [FirstNameNotTaken.createValidator(this.actorService)]),
       'lastName': new FormControl(),
       'rating': new FormControl(),
       'movies': new FormControl(),
@@ -58,13 +59,6 @@ export class ActorFormComponent implements OnInit {
         this.actorForm.controls.alive.setValue(false);
       }
     });
-
-    this.actorForm.controls.clothingSize.valueChanges.subscribe((newValue) => {
-      this.actorForm.controls.clothingSize.setValue(newValue);
-      this.size = newValue;
-      this.onOpenChange();
-    });
-
   }
 
   saveActor() {

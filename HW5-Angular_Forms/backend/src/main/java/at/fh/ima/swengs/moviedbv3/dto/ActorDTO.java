@@ -107,4 +107,21 @@ public class ActorDTO {
     public void setClothingSize(String clothingSize) {
         this.clothingSize = clothingSize;
     }
+
+    public ActorDTO() {
+    }
+
+    public ActorDTO(Long id, String firstName, String lastName, boolean alive, Integer rating, Gender gender, Date dayOfBirth, Set<Long> movies, String color, double income, String clothingSize) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.alive = alive;
+        this.rating = rating;
+        this.gender = gender;
+        this.dayOfBirth = dayOfBirth;
+        this.movies = movies;
+        this.color = color;
+        this.income = income;
+        this.clothingSize = clothingSize;
+    }
 }
