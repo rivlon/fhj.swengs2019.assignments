@@ -1,0 +1,7 @@
+<div *ngFor="let actor of actors">
+  {{actor.firstName}} {{actor.lastName}} <a [routerLink]="'/actor-form/' + actor.id">Edit</a> <button type="button" (click)="deleteActor(actor)">Delete</button>
+</div>
+<button type="button" (click)="createActor()">
+  Create actor
+</button>
+
